@@ -1,0 +1,99 @@
+<html>
+    <body>
+        <div class="container">
+            <div class="row">
+              <div id="header">
+                <h1>Dynamic Form Generator</h1>
+              </div>
+            </div>
+        
+            <div class="row formBg">
+                <h3>Select fields you want to add in your form</h3>
+                <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()"> 
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Select field type</label>
+                            <select name="fieldType" formControlName="fieldType" 
+                            class="form-control dropdownDesign">
+                                <option value ="">--Select--</option>
+                                <option value ="textField">Text Field</option>
+                                <option value ="numberField">Number Field</option>
+                                <option value ="radioButton">Radio Button</option>
+                                <option value ="checkBox">Check Box</option>
+                                <option value ="textarea">Textarea</option>
+                                <option value ="button">Button</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Enter placeholder here</label>
+                            <input type="text" class="form-control" formControlName="placeholder"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <button type="submit" class="submitButton">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row formBg">
+                <h3>Selected fields will be displayed here for your form</h3>
+                    <form>
+                        <div *ngFor="let value of users; let i = index">
+                            <div class="row">
+                                <div *ngIf="showTextField">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="textField{{i}}" [(ngModel)] = "value.textField"
+                                            [placeholder]="textPlaceHolder"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div *ngIf="showNumberField">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="numberField" [(ngModel)] = "value.numberField"
+                                        [placeholder]="numberPlaceHolder"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div *ngIf="showRadioButton">
+                                    <div class="form-group radioLeft">
+                                        <input type="radio"
+                                        class="form-control alignCenter">{{radioButtonValue}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div *ngIf="showCheckBox">
+                                    <div class="form-group checkLeft">
+                                        <input type="checkbox" 
+                                        class="form-control alignCenter">{{checkBoxValue}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div *ngIf="showTextarea">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" cols="29" 
+                                        [placeholder]="textareaPlaceHolder"></textarea>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div *ngIf="showSubmitButton">
+                                    <div class="form-group">
+                                        <button type="submit" class="submitButton form-control">{{buttonValue}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                
+            </div>
+        </div>
+    </body>
+</html>
