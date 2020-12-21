@@ -33,7 +33,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <button type="submit" class="submitButton">Add</button>
+                            <button type="submit" (click)="add()" class="submitButton">Add</button>
                         </div>
                     </div>
                 </form>
@@ -42,13 +42,11 @@
             <div class="row formBg">
                 <h3>Selected fields will be displayed here for your form</h3>
                     <form>
-                        <div *ngFor="let value of users; let i = index">
+                        <div *ngFor="let value of formArray">
                             <div class="row">
-                                <div *ngIf="showTextField">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="textField{{i}}" [(ngModel)] = "value.textField"
-                                            [placeholder]="textPlaceHolder"/>
-                                    </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="textField" [(ngModel)] = "value.textField"
+                                        [placeholder]="textPlaceHolder"/>
                                 </div>
                             </div>
                             <div class="row">
