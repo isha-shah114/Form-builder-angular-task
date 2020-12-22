@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-fields',
@@ -8,42 +7,15 @@ import { UserService } from '../user.service';
   styleUrls: ['./add-fields.component.scss']
 })
 export class AddFieldsComponent implements OnInit {
-  dynamicForm: FormGroup;
-  submitted = false;
-  formValue: any = [];
-  fieldName:any = 'Show';
-  replacePlaceHolder: string;
-  textPlaceHolder: string;
-  numberPlaceHolder: string;
-  radioButtonValue: string;
-  checkBoxValue: string;
-  textareaPlaceHolder: string;
-  buttonValue: string;
-  showTextField:boolean = false;
-  showNumberField:boolean = false;
-  showRadioButton:boolean = false;
-  showCheckBox:boolean = false;
-  showTextarea:boolean = false;
-  showSubmitButton:boolean = false;
+  dynamicForm: FormGroup; //to store the value of form
+  formValue: any = []; //to store the value of dynamic form
+  formArray: any = []; //to add the value coming from user input
+  fieldName:any = 'Show'; //to show the selected field on click
 
-  // formArray: any[] = [{
-  //   textField: '',
-  //   numberField: '',
-  //   radioButton: '',
-  //   checkBox: '',
-  //   textarea: '',
-  //   submitButton: '',
-  //   replacePlaceHolder: '',
-  // }];
-
-  formArray: any[] = [{
-    fieldType: '',
-    placeholder: '',
-  }];
-
-  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    // storing and declaring the fields of form
     this.dynamicForm = this.formBuilder.group({
       fieldType: [''],
       placeholder: [''],
@@ -51,62 +23,38 @@ export class AddFieldsComponent implements OnInit {
   }
 
   add() {
-    // this.formArray = new formArray();
-    // this.dataArray.push(this.formArray);
-    
+     // storing he value of dynamic form in array
     this.formValue = this.dynamicForm.value;
 
+    //to values getting added in an array through user input
     this.formArray.push({
       fieldType: this.formValue.fieldType,
       placeholder: this.formValue.placeholder,
     });   
-    // this.userService.addUser(this.formValue);
     
+    // checking the formValue array storage with dropdown's fieldtype if correct or not
     if(this.formValue.fieldType == "textField") {
-      // if(this.formArray.length <= 2){
-      this.textPlaceHolder= this.formValue.placeholder;
-      // }
-
-      // if(this.formArray.length > 2){
-        // this.replacePlaceHolder = this.formValue.placeholder;
-        // console.log(this.replacePlaceHolder);
-      // }
+      this.fieldName = "Show";
     }
-        if(this.formValue.fieldType == "numberField") {
-          this.showNumberField = !this.showNumberField;
-          this.fieldName = "Show";
-          this.numberPlaceHolder= this.formValue.placeholder;
-        }
 
-        if(this.formValue.fieldType == "radioButton") {
-          this.showRadioButton = !this.showRadioButton;
-          this.fieldName = "Show";
-          this.radioButtonValue= this.formValue.placeholder;
-          console.log(this.radioButtonValue);
-        }
-
-        if(this.formValue.fieldType == "checkBox") {
-          this.showCheckBox = !this.showCheckBox;
-          this.fieldName = "Show";
-          this.checkBoxValue= this.formValue.placeholder;
-          console.log(this.checkBoxValue);
-        }
-
-        if(this.formValue.fieldType == "textarea") {
-          this.showTextarea = !this.showTextarea;
-          this.fieldName = "Show";
-          this.textareaPlaceHolder= this.formValue.placeholder;
-        }
-
-        if(this.formValue.fieldType == "button") {
-          this.showSubmitButton = !this.showSubmitButton;
-          this.fieldName = "Show";
-          this.buttonValue= this.formValue.placeholder;
-        }
-      }
-
-      onSubmit()
-      {
-        console.log(this.formArray);
-      }    
+    if(this.formValue.fieldType == "numberField"){ 
+      this.fieldName = "Show";
     }
+
+    if(this.formValue.fieldType == "radioButton") {
+      this.fieldName = "Show";
+    }
+
+    if(this.formValue.fieldType == "checkBox") {
+      this.fieldName = "Show";
+    }
+
+    if(this.formValue.fieldType == "textarea") {
+      this.fieldName = "Show";
+    }
+
+    if(this.formValue.fieldType == "button") {
+      this.fieldName = "Show";
+    }
+  } 
+}

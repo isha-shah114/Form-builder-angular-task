@@ -1,8 +1,9 @@
+// Declaration of variables used through out the scss
+
 $font-stack: Arial, Helvetica, sans-serif;
 $header-font: hsl(225, 83%, 61%);
 $sidebar-bg: hsl(211, 18%, 23%);
 $button-bg : hsl(32, 73%, 59%);
-// $alternate-button-bg: hsl(346, 85%, 51%);
 $hover-shadow: 1px 1px 6px #292929;
 $font-color-white: #fff;
 
@@ -15,17 +16,19 @@ body
     background-color: hsl(34, 78%, 91%);
 }
 
+.container{
+    padding-bottom: 1%;
+}
+
 a {
   text-decoration: none;
 }
 
-#header {
-    h1 {
-        color: $header-font;
-        text-align: center;
-        margin: 0;
-        padding-top: 3%;
-    }
+h1 {
+    color: $header-font;
+    text-align: center;
+    margin: 0;
+    padding-top: 2%;
 }
 
 button {
@@ -38,7 +41,8 @@ button {
     margin: 2% 2% 2% 0;
 }
 
-.formBg{
+/****************************************** FORM DESIGN STARTED ******************************************/
+.formBg {
     margin: 3% 20%;
     background-color: $sidebar-bg;
     padding: 1% 0%;
@@ -49,7 +53,7 @@ button {
         text-align: center;
         color: yellow;
     }
-    .form-group{
+    .form-group {
         color: wheat;
     
         input {
@@ -92,7 +96,7 @@ button {
     
     .checkLeft{
         position: relative;
-        right: 1.8%;
+        right: 13.5%;
     }
 }
 .submitButton
@@ -106,5 +110,218 @@ button {
 
     &:hover{
         box-shadow: 2px 2px 4px grey;
+    }
+}
+
+/****************************************** FORM DESIGN ENDED ******************************************/
+
+
+/******************************************RESPONSIVENESS******************************************/
+
+@media screen and (min-width: 320px) and (max-width: 360px) {
+    h1 { font-size: large; } 
+    h3 { font-size: small; margin: 6%;} 
+    label { font-size: small; }
+
+    .formBg {
+        .form-group { 
+            .mobileDropdownDesign {
+                max-height: 1.5em;
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 0;
+                border-radius: 4px;
+            }
+
+            input {
+                max-height: 1.3em;
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 0;
+                border-radius: 4px;
+                width: 8em;
+            }
+        }
+    }
+
+    input[type="radio"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    input[type="checkbox"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    textarea {
+        max-width: 80%;
+    }
+
+    .submitButton
+    {
+        width: 27%;
+        margin: 4% 0 3% 0;
+        border-radius: 5px;
+        font-size: inherit;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 411px){
+    h1 { font-size: larger; } 
+    h3 { font-size: medium; margin: 6%;} 
+    label { font-size: inherit; }
+
+    .formBg {
+        .form-group { 
+            .mobileDropdownDesign {
+                max-height: 1.5em;
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 3%;
+                border-radius: 4px;
+            }
+            input {
+                height: 1.3em;
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 0;
+                border-radius: 4px;
+                width: 8em;
+            }
+        }
+    }
+
+    input[type="radio"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    input[type="checkbox"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    textarea {
+        max-width: 80%;
+    }
+
+    .submitButton
+    {
+        width: 28%;
+        margin: 4% 0 5% 0;
+        border-radius: 5px;
+        font-size: inherit;
+    }
+}
+
+@media screen and (min-width: 412px) and (max-width: 540px) {
+    h1 { font-size: x-large; } 
+    h3 { font-size: inherit; margin: 6%;} 
+    label { font-size: inherit; }
+
+    .formBg {
+        .form-group { 
+            .mobileDropdownDesign {
+                max-height: 1.5em;
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 3%;
+                border-radius: 4px;
+            }
+
+            input {
+                max-height: 1.3em;
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 0;
+                border-radius: 4px;
+                width: 8em;
+            }
+        }
+        .dropdownPosition {
+            margin-left: 11%;
+        }
+    }
+
+    input[type="radio"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    input[type="checkbox"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    textarea {
+        max-width: 80%;
+    }
+
+    .submitButton
+    {
+        width: 27%;
+        margin: 4% 0 3% 0;
+        border-radius: 5px;
+        font-size: inherit;
+    }
+}
+
+@media screen and (min-width: 541px) and (max-width: 768px){
+
+    .formBg {
+        .form-group { 
+            .mobileDropdownDesign {
+                font-size: 14px;
+                margin: 3.5% 0 5.5% 0;
+                border-radius: 4px;
+                width: 29%;
+            }
+
+            input {
+                font-size: 14px;
+                margin: 3.5% 0 6.5% 0;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    input[type="radio"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    input[type="checkbox"]{
+        height: 1em;
+        margin: 3.5% 0 0 0;
+        width: 2em;
+    }
+
+    textarea {
+        max-width: 80%;
+    }
+
+    .submitButton
+    {
+        width: 27%;
+        margin: 4% 0 3% 0;
+        border-radius: 5px;
+        font-size: inherit;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+
+    .formBg {
+        .form-group { 
+            .mobileDropdownDesign {
+                font-size: 14px;
+                margin: 3.5% 0 0 1%;
+                border-radius: 4px;
+                width: 30%;
+                height: 2.6em;
+            }
+        }
     }
 }
