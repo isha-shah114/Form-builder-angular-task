@@ -1,20 +1,26 @@
 <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
     <body>
         <div class="container">
             <div class="row">
               <div id="header">
+                  <!-- Heading for the webpage --> 
                 <h1>Dynamic Form Generator</h1>
               </div>
             </div>
         
             <div class="row formBg">
+                <!-- First form heading --> 
                 <h3>Select fields you want to add in your form</h3>
-                <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()"> 
+                <form [formGroup]="dynamicForm"> 
                     <div class="row">
-                        <div class="form-group">
+                        <!-- Dropdown list to select desired field type --> 
+                        <div class="form-group dropdownPosition">
                             <label>Select field type</label>
                             <select name="fieldType" formControlName="fieldType" 
-                            class="form-control dropdownDesign">
+                                    class="form-control dropdownDesign mobileDropdownDesign">
                                 <option value ="">--Select--</option>
                                 <option value ="textField">Text Field</option>
                                 <option value ="numberField">Number Field</option>
@@ -27,72 +33,80 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
+                            <!-- Placeholder textfield to enter the text user want to display as placeholder --> 
                             <label>Enter placeholder here</label>
                             <input type="text" class="form-control" formControlName="placeholder"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <button type="submit" class="submitButton">Add</button>
+                            <!-- add method in this button will call the method in .ts file --> 
+                            <button type="submit" (click)="add()" class="submitButton">Add</button>
                         </div>
                     </div>
                 </form>
             </div>
 
             <div class="row formBg">
+                <!-- dunamically displayed form heading --> 
                 <h3>Selected fields will be displayed here for your form</h3>
-                    <form>
-                        <div *ngFor="let value of users; let i = index">
-                            <div class="row">
-                                <div *ngIf="showTextField">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="textField{{i}}" [(ngModel)] = "value.textField"
-                                            [placeholder]="textPlaceHolder"/>
-                                    </div>
-                                </div>
+                <form>
+                    <!-- array to fetch the value from .ts file and display it in html format --> 
+                    <div *ngFor="let value of formArray">
+                        <div class="row">
+                            <!-- comparing array value to the dropdown options coming from .ts form value --> 
+                            <div *ngIf="value.fieldType == 'textField'">
+                                <div class="form-group">
+                                    <!-- fetching array value and displaying it in the field --> 
+                                    <input type="text" class="form-control" name="textField" 
+                                        [(ngModel)] = "value.textField" [placeholder]="value.placeholder"/>
+                                </div> 
                             </div>
-                            <div class="row">
-                                <div *ngIf="showNumberField">
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" name="numberField" [(ngModel)] = "value.numberField"
-                                        [placeholder]="numberPlaceHolder"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div *ngIf="showRadioButton">
-                                    <div class="form-group radioLeft">
-                                        <input type="radio"
-                                        class="form-control alignCenter">{{radioButtonValue}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div *ngIf="showCheckBox">
-                                    <div class="form-group checkLeft">
-                                        <input type="checkbox" 
-                                        class="form-control alignCenter">{{checkBoxValue}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div *ngIf="showTextarea">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="5" cols="29" 
-                                        [placeholder]="textareaPlaceHolder"></textarea>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div *ngIf="showSubmitButton">
-                                    <div class="form-group">
-                                        <button type="submit" class="submitButton form-control">{{buttonValue}}</button>
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div *ngIf="value.fieldType == 'numberField'">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="numberField" 
+                                        [(ngModel)] = "value.numberField" [placeholder]="value.placeholder"/>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                
+                    
+                        <div class="row">
+                            <div *ngIf="value.fieldType == 'radioButton'">
+                                <div class="form-group radioLeft">
+                                    <!-- fetching array value and displaying it in as radio button name --> 
+                                    <input type="radio" class=" alignCenter"> {{value.placeholder}}
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div *ngIf="value.fieldType == 'checkBox'">
+                                <div class="form-group checkLeft">
+                                    <!-- fetching array value and displaying it in as checkbox name -->
+                                    <input type="checkbox" class="form-control alignCenter"> {{value.placeholder}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div *ngIf="value.fieldType == 'textarea'">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="textarea" [(ngModel)] = "value.textarea"
+                                        rows="5" cols="29" [placeholder]="value.placeholder"></textarea>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div *ngIf="value.fieldType == 'button'">
+                                <div class="form-group">
+                                    <!-- fetching array value and displaying it in as button name -->
+                                    <button type="submit" class="submitButton form-control">{{value.placeholder}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </body>
