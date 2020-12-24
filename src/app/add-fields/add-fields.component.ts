@@ -10,14 +10,15 @@ export class AddFieldsComponent implements OnInit {
   dynamicForm: FormGroup; //to store the value of form
   formValue: any = []; //to store the value of dynamic form
   formArray: any = []; //to add the value coming from user input
-  fieldName:any = 'Show'; //to show the selected field on click
-
+  optionValue: string;
+  
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     // storing and declaring the fields of form
     this.dynamicForm = this.formBuilder.group({
       fieldType: [''],
+      inputType: [''],
       placeholder: [''],
     });
   }
@@ -29,32 +30,8 @@ export class AddFieldsComponent implements OnInit {
     //to values getting added in an array through user input
     this.formArray.push({
       fieldType: this.formValue.fieldType,
+      inputType: this.formValue.inputType,
       placeholder: this.formValue.placeholder,
-    });   
-    
-    // checking the formValue array storage with dropdown's fieldtype if correct or not
-    if(this.formValue.fieldType == "textField") {
-      this.fieldName = "Show";
-    }
-
-    if(this.formValue.fieldType == "numberField"){ 
-      this.fieldName = "Show";
-    }
-
-    if(this.formValue.fieldType == "radioButton") {
-      this.fieldName = "Show";
-    }
-
-    if(this.formValue.fieldType == "checkBox") {
-      this.fieldName = "Show";
-    }
-
-    if(this.formValue.fieldType == "textarea") {
-      this.fieldName = "Show";
-    }
-
-    if(this.formValue.fieldType == "button") {
-      this.fieldName = "Show";
-    }
-  } 
+    });
+  }
 }
