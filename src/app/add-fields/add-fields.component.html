@@ -101,9 +101,11 @@
                         <div class="row">
                             <div *ngIf="value.fieldType == 'radioButton'">
                                 <div class="radio-check-position">
-                                    <!-- fetching array value and displaying it in as radio button name --> 
-                                   <input type="radio"> {{value.placeholder}}
-                                
+                                    <!-- fetching array value and displaying it in as radio button name -->
+                                    <label class="label-overflow">
+                                        <input type="radio"> {{value.placeholder}}
+                                        <span class="tooltip"> {{value.placeholder}} </span>
+                                    </label> 
                                 </div>
                             </div>
                         </div>
@@ -111,7 +113,10 @@
                             <div *ngIf="value.fieldType == 'checkBox'">
                                 <div class="radio-check-position">
                                     <!-- fetching array value and displaying it in as checkbox name -->
-                                    <input type="checkbox"> {{value.placeholder}}
+                                    <label class="label-overflow">
+                                        <input type="checkbox"> {{value.placeholder}}
+                                        <span class="tooltip"> {{value.placeholder}} </span>
+                                    </label> 
                                 </div>
                             </div>
                         </div>

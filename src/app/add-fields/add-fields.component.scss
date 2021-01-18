@@ -13,6 +13,7 @@ body {
     padding: 0;
     text-align: center;
     background-color: hsl(34, 78%, 91%);
+    overflow: hidden;
 }
 
 .container { padding-bottom: 1%; }
@@ -74,11 +75,47 @@ h1 {
     .radio-check-position {
         height: 14px;
         color: $label-color;
-        text-align: left;
         margin-top: 3.5%;
         position: relative;
-        left: 34%;
+        right: 8.4%;
     }
+
+    .label-overflow {
+        white-space: nowrap; 
+        width: 100px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        text-align: left;
+    }
+
+    .label-overflow:hover .tooltip:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent $label-color transparent transparent;
+      }
+    .label-overflow:hover .tooltip {
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+        word-break: break-all;
+        width: auto;
+        background-color: $label-color;
+        color: $form-background;
+        position: absolute;
+        z-index: 1;
+        top: -2px;
+        right: 30%;
+        border-radius: 4px;
+        padding: 4px;
+        font-size: small;
+        box-shadow: 2px 2px 4px grey;
+    }  
 }
 .submit-button {
     width: 18%;
